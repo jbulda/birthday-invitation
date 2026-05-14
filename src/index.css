@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;700&display=swap');
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Cinzel', serif;
+}
+
+body {
+  background-color: #836197; /* Fallback color */
+}
+
+/* Custom styles for the glitter input to make it feel more "magical" */
+.glitter-input:focus {
+  border-color: #d4bce2 !important;
+  box-shadow: 0 0 15px rgba(212, 188, 226, 0.5);
+  transform: translateY(-2px);
+}
+
+.glitter-input {
+  transition: all 0.3s ease !important;
+}
+
+/* Force the cursor canvas to the absolute top */
+canvas[style*="pointer-events: none"] {
+  z-index: 9999 !important;
+}
+
+/* If the library uses a specific class or if you want to be safe, 
+   target any canvas appended to the body that isn't your background */
+body > canvas {
+  z-index: 10000 !important;
+  pointer-events: none !important;
+}
+
+html, body, a, button, input {
+  /* We move the wand so the sparkly tip sits at the top-left (0,0) */
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' style='font-size:30px'><text y='30' x='-15' transform='rotate(-10)'>🪄</text></svg>") 0 0, auto !important;
+}
+
+html:active, body:active {
+  /* On click, we tilt it slightly to give a 'casting' feel */
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' style='font-size:30px'><text y='35' x='-10' transform='rotate(-25)'>🪄</text></svg>") 0 0, auto !important;
+}
