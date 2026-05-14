@@ -22,6 +22,11 @@ const StaticInvite = () => {
                 border: '1px solid #e1bee7',
                 fontFamily: "'Cinzel', serif"
             }}>
+                <h1 style={{ fontFamily: 'Cinzel Decorative', color: '#836197', fontSize: '2rem' }}>
+
+                Aphie's 1st Birthday
+
+                </h1>
                 {/* Event Details Section */}
                 <div style={{ margin: '10px 0 25px 0', lineHeight: '2.2', color: '#4a3b52' }}>
                     <p style={{ margin: 0 }}>✨ <strong>Sunday, May 24, 2026</strong></p>
