@@ -2,43 +2,46 @@ import { useState, useEffect, useRef } from 'react';
 import { supabase } from './supabaseClient';
 import RSVPForm from './RSVPForm';
 import { fairyDustCursor } from 'cursor-effects';
+import StaticInvite from './StaticInvite';
 
 // Particles imports
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import Butterfly from './Butterfly';
 
+
+const USE_STATIC_VERSION = true;
 // --- REUSABLE STYLES ---
 const styles = {
   mainWrapper: {
-  minHeight: '100vh',
-  width: '100vw',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  position: 'relative',
-  padding: '20px',
-  boxSizing: 'border-box',
-  // New Lighter Pastel Palette
-  background: `
+    minHeight: '100vh',
+    width: '100vw',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    padding: '20px',
+    boxSizing: 'border-box',
+    // New Lighter Pastel Palette
+    background: `
     radial-gradient(circle at 70% 20%, #f3e5f5 0%, transparent 40%),
     radial-gradient(circle at 10% 80%, #ede7f6 0%, transparent 60%),
     linear-gradient(135deg, #f8f0fb 0%, #e1bee7 50%, #d1c4e9 100%)
   `,
-},
+  },
   card: {
-  background: 'rgba(255, 255, 255, 0.85)',
-  padding: '50px 30px',
-  borderRadius: '30px',
-  textAlign: 'center',
-  backdropFilter: 'blur(15px)',
-  boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
-  maxWidth: '650px',
-  width: '100%',
-  position: 'relative', 
-  zIndex: 10,           // Higher than background canvases
-  pointerEvents: 'auto' // Ensures the card captures the mouse
-},
+    background: 'rgba(255, 255, 255, 0.85)',
+    padding: '50px 30px',
+    borderRadius: '30px',
+    textAlign: 'center',
+    backdropFilter: 'blur(15px)',
+    boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
+    maxWidth: '650px',
+    width: '100%',
+    position: 'relative',
+    zIndex: 10,           // Higher than background canvases
+    pointerEvents: 'auto' // Ensures the card captures the mouse
+  },
   input: {
     padding: '16px',
     borderRadius: '12px',
@@ -83,19 +86,19 @@ function App() {
   }, []);
 
   // Initialize Glitter on the passcode input
-useEffect(() => {
-  // Initialize the glitter globally
-  const effect = fairyDustCursor({
-    colors: ['#ffffff', '#d4bce2', '#836197'],
-    // If the library supports it, you can sometimes adjust particle rate here
-  });
+  useEffect(() => {
+    // Initialize the glitter globally
+    const effect = fairyDustCursor({
+      colors: ['#ffffff', '#d4bce2', '#836197'],
+      // If the library supports it, you can sometimes adjust particle rate here
+    });
 
-  return () => {
-    if (effect && typeof effect.destroy === 'function') {
-      effect.destroy();
-    }
-  };
-}, []); // Empty array = Permanent magic throughout the app
+    return () => {
+      if (effect && typeof effect.destroy === 'function') {
+        effect.destroy();
+      }
+    };
+  }, []); // Empty array = Permanent magic throughout the app
 
   // Check for session
   useEffect(() => {
@@ -193,7 +196,11 @@ useEffect(() => {
             <p style={{ fontSize: '1.3rem', color: '#555' }}>You are cordially invited to celebrate a year of magic!</p>
           </header>
           <main>
-            <RSVPForm />
+            {USE_STATIC_VERSION ? (
+              <StaticInvite />
+            ) : (
+              <RSVPForm />
+            )}
           </main>
         </div>
       )}
